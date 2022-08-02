@@ -1,4 +1,4 @@
-import { Modal } from "../Modal";
+import { Modal } from "../lib/Modal";
 
 export default {
     title: 'Modal - Plugin',
