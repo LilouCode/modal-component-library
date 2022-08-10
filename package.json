@@ -1,6 +1,6 @@
 {
   "name": "liloucode-just-a-modal",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "A simple React component that provides a modal",
   "module": "dist/index.js",
   "main": "dist/index.js",
@@ -10,6 +10,12 @@
   ],
   "author": "Lisa Lox",
   "licence": "MIT",
+  "keywords":[
+    "react",
+    "react component",
+    "modal",
+    "react library"
+  ],
   "scripts": {
     "start": "start-storybook -p 6006",
     "build-story": "build-storybook",

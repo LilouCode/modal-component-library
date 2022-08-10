@@ -1,5 +1,7 @@
 import { Modal } from "../lib/Modal";
-
+/**
+ * This file will not be publish
+ */
 export default {
     title: 'Modal - Plugin',
     component: Modal,

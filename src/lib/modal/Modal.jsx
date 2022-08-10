@@ -1,40 +1,46 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import styles from "./modal.module.css";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
+/**
+ * Modal Library
+ * 
+ * @returns This component returns a modal with only 2 props required and over 16 props to customize, check the read me
+ */
 const Modal = ({
-  wrapperBackgroundColor = "#ffffff",
+  borderRadius = "round",
+  btnColor = "#acdef3",
+  btnBackgroundColor = "#0b0b13",
+  btnBorder = "1px solid black",
+  btnFontFamily = "Georgia, 'Times New Roman', Times, serif",
+  btnFontSize = "normal",
+  closeIcon,
+  textBtn = "Okay",
+  textColor = "#00000",
   textContent,
   textFontFamily = "Georgia, 'Times New Roman', Times, serif",
-  btnFontFamily = "Georgia, 'Times New Roman', Times, serif",
-  textColor = "#00000",
-  titleContent,
+  textFontSize = "normal",
   textFontWeight,
   titleColor = "#00000",
-  textBtn = "Okay",
-  textFontSize = "normal",
-  btnFontSize = "normal",
+  titleContent,
   titleFontSize ="super",
   titleFontWeight,
-  btnColor = "#acdef3",
-  btnBorder = "1px solid black",
-  btnBackgroundColor = "#0b0b13",
-  borderRadius = "round",
-  closeIcon,
+  wrapperBackgroundColor = "#ffffff",
 }) => {
-  const [isModalOpen, setModal] = useState(true);
+  const [isModalOpen, setModal] = useState(true); //manage the state open/close of the modal
   useEffect(() => {
-    if (textContent.length < 1) {
+    if (textContent.length < 1) {//if there is no text 
       throw Error("Must have some text");
     }
   }, [textContent]);
-  const borderRadiusMap = {
+
+  const borderRadiusMap = { //options for borders
     oval: "50px",
     round: "10px",
     square: "0px",
   };
-  const fontSizeMap = {
+  const fontSizeMap = { //option for font size
     tiny: "12px",
     small: "14px",
     normal: "16px",
@@ -99,29 +105,41 @@ const Modal = ({
     </div>
   ) : null;
 };
-// Modal.propTypes = {
-//   textFontFamily: PropTypes.string,
-//   btnFontFamily: PropTypes.string,
-//   btnColor: PropTypes.string,
-//   borderRadius: PropTypes.oneOf(["oval", "round", "square"]),
-//   textColor: PropTypes.string,
-//   textContent: PropTypes.string.isRequired,
-//   textFontSize: PropTypes.oneOf([
-//     "tiny",
-//     "small",
-//     "normal",
-//     "large",
-//     "super",
-//     "extra",
-//   ]),
-//   btnFontSize: PropTypes.oneOf([
-//     "tiny",
-//     "small",
-//     "normal",
-//     "large",
-//     "super",
-//     "extra",
-//   ]),
-// };
+Modal.propTypes = {
+  borderRadius: PropTypes.oneOf(["oval", "round", "square"]),
+  btnColor: PropTypes.string,
+  btnBackgroundColor: PropTypes.string,
+  btnBorder: PropTypes.string,
+  btnFontFamily: PropTypes.string,
+  btnFontSize: PropTypes.oneOf([
+    "tiny",
+    "small",
+    "normal",
+    "large",
+    "super",
+    "extra",
+    "giant"
+  ]),
+  closeIcon: PropTypes.string,
+  textBtn: PropTypes.string,
+  textColor: PropTypes.string,
+  textContent: PropTypes.string.isRequired,
+  textFontFamily: PropTypes.string,
+  textFontSize: PropTypes.oneOf([
+    "tiny",
+    "small",
+    "normal",
+    "large",
+    "super",
+    "extra",
+    "giant"
+  ]),
+  textFontWeight: PropTypes.string,
+  titleColor: PropTypes.string,
+  titleContent: PropTypes.string,
+  titleFontSize: PropTypes.string,
+  titleFontSize: PropTypes.string,
+  wrapperBackgroundColor: PropTypes.string,
+};
 
 export default Modal;
