@@ -3,18 +3,21 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Modal = void 0;
+exports.default = void 0;
 
 require("core-js/modules/web.dom-collections.iterator.js");
 
-var _react = require("react");
+var _react = _interopRequireWildcard(require("react"));
 
 var _modalModule = _interopRequireDefault(require("./modal.module.css"));
 
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+// import PropTypes from "prop-types";
 const Modal = _ref => {
   let {
     wrapperBackgroundColor = "#ffffff",
@@ -22,10 +25,16 @@ const Modal = _ref => {
     textFontFamily = "Georgia, 'Times New Roman', Times, serif",
     btnFontFamily = "Georgia, 'Times New Roman', Times, serif",
     textColor = "#00000",
-    textBtn,
+    titleContent,
+    textFontWeight,
+    titleColor = "#00000",
+    textBtn = "Okay",
     textFontSize = "normal",
     btnFontSize = "normal",
+    titleFontSize = "super",
+    titleFontWeight,
     btnColor = "#acdef3",
+    btnBorder = "1px solid black",
     btnBackgroundColor = "#0b0b13",
     borderRadius = "round",
     closeIcon
@@ -47,18 +56,25 @@ const Modal = _ref => {
     normal: "16px",
     large: "18px",
     super: "20px",
-    extra: "24px"
+    extra: "24px",
+    giant: "34px"
   };
-  return isModalOpen ? /*#__PURE__*/React.createElement("div", {
-    className: _modalModule.default.background
-  }, /*#__PURE__*/React.createElement("div", {
+  return isModalOpen ? /*#__PURE__*/_react.default.createElement("div", {
+    className: _modalModule.default.background,
+    style: {
+      position: "absolute",
+      left: "0px",
+      top: "0",
+      zIndex: "99999"
+    }
+  }, /*#__PURE__*/_react.default.createElement("div", {
     role: "alert",
     className: _modalModule.default.wrapper,
     style: {
       backgroundColor: wrapperBackgroundColor,
       fontFamily: textFontFamily
     }
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/_react.default.createElement("img", {
     className: _modalModule.default.close,
     role: "button",
     alt: "close the dialog",
@@ -66,15 +82,23 @@ const Modal = _ref => {
       setModal(false);
     },
     src: closeIcon
-  }), /*#__PURE__*/React.createElement("div", {
+  }), /*#__PURE__*/_react.default.createElement("div", {
     className: _modalModule.default.main
-  }, /*#__PURE__*/React.createElement("p", {
+  }, /*#__PURE__*/_react.default.createElement("h2", {
+    className: _modalModule.default.text,
+    style: {
+      color: titleColor,
+      fontSize: fontSizeMap[titleFontSize],
+      fontWeight: titleFontWeight
+    }
+  }, titleContent), /*#__PURE__*/_react.default.createElement("p", {
     className: _modalModule.default.text,
     style: {
       color: textColor,
-      fontSize: fontSizeMap[textFontSize]
+      fontSize: fontSizeMap[textFontSize],
+      fontWeight: textFontWeight
     }
-  }, textContent), /*#__PURE__*/React.createElement("button", {
+  }, textContent), /*#__PURE__*/_react.default.createElement("button", {
     onClick: () => {
       setModal(false);
     },
@@ -84,19 +108,37 @@ const Modal = _ref => {
       fontFamily: btnFontFamily,
       backgroundColor: btnBackgroundColor,
       fontSize: fontSizeMap[btnFontSize],
-      borderRadius: borderRadiusMap[borderRadius]
+      borderRadius: borderRadiusMap[borderRadius],
+      border: {
+        btnBorder
+      }
     }
   }, textBtn)))) : null;
-};
+}; // Modal.propTypes = {
+//   textFontFamily: PropTypes.string,
+//   btnFontFamily: PropTypes.string,
+//   btnColor: PropTypes.string,
+//   borderRadius: PropTypes.oneOf(["oval", "round", "square"]),
+//   textColor: PropTypes.string,
+//   textContent: PropTypes.string.isRequired,
+//   textFontSize: PropTypes.oneOf([
+//     "tiny",
+//     "small",
+//     "normal",
+//     "large",
+//     "super",
+//     "extra",
+//   ]),
+//   btnFontSize: PropTypes.oneOf([
+//     "tiny",
+//     "small",
+//     "normal",
+//     "large",
+//     "super",
+//     "extra",
+//   ]),
+// };
 
-exports.Modal = Modal;
-Modal.propTypes = {
-  textFontFamily: _propTypes.default.string,
-  btnFontFamily: _propTypes.default.string,
-  btnColor: _propTypes.default.string,
-  borderRadius: _propTypes.default.oneOf(["oval", "round", "square"]),
-  textColor: _propTypes.default.string,
-  textContent: _propTypes.default.string.isRequired,
-  textFontSize: _propTypes.default.oneOf(["tiny", "small", "normal", "large", "super", "extra"]),
-  btnFontSize: _propTypes.default.oneOf(["tiny", "small", "normal", "large", "super", "extra"])
-};
+
+var _default = Modal;
+exports.default = _default;

@@ -1,17 +1,24 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import styles from "./modal.module.css";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
-export const Modal = ({
+const Modal = ({
   wrapperBackgroundColor = "#ffffff",
   textContent,
   textFontFamily = "Georgia, 'Times New Roman', Times, serif",
   btnFontFamily = "Georgia, 'Times New Roman', Times, serif",
   textColor = "#00000",
-  textBtn,
+  titleContent,
+  textFontWeight,
+  titleColor = "#00000",
+  textBtn = "Okay",
   textFontSize = "normal",
   btnFontSize = "normal",
+  titleFontSize ="super",
+  titleFontWeight,
   btnColor = "#acdef3",
+  btnBorder = "1px solid black",
   btnBackgroundColor = "#0b0b13",
   borderRadius = "round",
   closeIcon,
@@ -34,9 +41,13 @@ export const Modal = ({
     large: "18px",
     super: "20px",
     extra: "24px",
+    giant: "34px"
   };
   return isModalOpen ? (
-    <div className={styles.background}>
+    <div
+      className={styles.background}
+      style={{ position: "absolute", left: "0px", top: "0", zIndex: "99999" }}
+    >
       <div
         role="alert"
         className={styles.wrapper}
@@ -55,9 +66,15 @@ export const Modal = ({
           src={closeIcon}
         />
         <div className={styles.main}>
+          <h2
+            className={styles.text}
+            style={{ color: titleColor, fontSize: fontSizeMap[titleFontSize], fontWeight: titleFontWeight }}
+          >
+            {titleContent}
+          </h2>
           <p
             className={styles.text}
-            style={{ color: textColor, fontSize: fontSizeMap[textFontSize] }}
+            style={{ color: textColor, fontSize: fontSizeMap[textFontSize], fontWeight: textFontWeight }}
           >
             {textContent}
           </p>
@@ -72,6 +89,7 @@ export const Modal = ({
               backgroundColor: btnBackgroundColor,
               fontSize: fontSizeMap[btnFontSize],
               borderRadius: borderRadiusMap[borderRadius],
+              border: {btnBorder},
             }}
           >
             {textBtn}
@@ -81,27 +99,29 @@ export const Modal = ({
     </div>
   ) : null;
 };
-Modal.propTypes = {
-  textFontFamily: PropTypes.string,
-  btnFontFamily: PropTypes.string,
-  btnColor: PropTypes.string,
-  borderRadius: PropTypes.oneOf(["oval", "round", "square"]),
-  textColor: PropTypes.string,
-  textContent: PropTypes.string.isRequired,
-  textFontSize: PropTypes.oneOf([
-    "tiny",
-    "small",
-    "normal",
-    "large",
-    "super",
-    "extra",
-  ]),
-  btnFontSize: PropTypes.oneOf([
-    "tiny",
-    "small",
-    "normal",
-    "large",
-    "super",
-    "extra",
-  ]),
-};
+// Modal.propTypes = {
+//   textFontFamily: PropTypes.string,
+//   btnFontFamily: PropTypes.string,
+//   btnColor: PropTypes.string,
+//   borderRadius: PropTypes.oneOf(["oval", "round", "square"]),
+//   textColor: PropTypes.string,
+//   textContent: PropTypes.string.isRequired,
+//   textFontSize: PropTypes.oneOf([
+//     "tiny",
+//     "small",
+//     "normal",
+//     "large",
+//     "super",
+//     "extra",
+//   ]),
+//   btnFontSize: PropTypes.oneOf([
+//     "tiny",
+//     "small",
+//     "normal",
+//     "large",
+//     "super",
+//     "extra",
+//   ]),
+// };
+
+export default Modal;
